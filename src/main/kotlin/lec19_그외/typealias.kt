@@ -1,4 +1,4 @@
-package lec18_스트림
+package lec19_그외
 
 import com.lannstark.lec17.Fruit
 
@@ -23,24 +23,20 @@ fun main() {
         println(apple)
     }
 
-    val applePrices = filterFruitsPrice(fruits, isApple)
-    for (price in applePrices) {
-        println(price)
-    }
-
 }
 
 val isApple: (Fruit) -> Boolean = { fruit: Fruit -> fruit.name === "사과" }
 
+// typealias 사용
+typealias FruitFiler = (Fruit) -> Boolean
+typealias USPKCMap = Map<String, UltraSuperPowerKingClass>
+
 private fun filterFruits(
-    fruits: List<Fruit>, filter: (Fruit) -> Boolean
+    fruits: List<Fruit>, filter: FruitFiler
 ): List<Fruit> {
     return fruits.filter(filter)
 }
 
-private fun filterFruitsPrice(
-    fruits: List<Fruit>, filter: (Fruit) -> Boolean
-): List<Int> {
-    return fruits.filter(filter)
-        .map{ fruit -> fruit.price }
-}
+data class UltraSuperPowerKingClass(
+    val name: String
+)
